@@ -12,7 +12,7 @@ on:
     inputs:
       arc_name:
         description: 'Target ARC name used for `runs-on` in job'
-        default: ubuntu-latest
+        default: runner-scale-set-kubernetes
 
 # jobs:
 #   # test-connection-1:
@@ -26,7 +26,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: terraform setup
         uses: hashicorp/setup-terraform@v3
+
+      - name: check workdir
+        run: pwd
+        
       - name: terraform test
         run: terraform version
